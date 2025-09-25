@@ -28,7 +28,7 @@ jobs:
         run: echo "Cache hit result: ${{ steps.cache-deps.outputs.cache-hit }}"
 
       - name: Install dependencies
-        run: npm install --ignore-scripts --no-audit --no-fund || true
+        run: "npm install --ignore-scripts --no-audit --no-fund || true"
 
       - name: Build project
         run: echo "Dummy build since repo is empty"
