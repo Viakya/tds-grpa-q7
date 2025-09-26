@@ -1,34 +1,26 @@
 name: CI with Cache
-
 on:
   workflow_dispatch:
   push:
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@v4        
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-
       - name: Cache dependencies
         id: cache-deps
         uses: actions/cache@v4
         with:
           path: ~/.npm
           key: cache-8468794
-
       - name: prime-cache-8468794
-        run: echo Cache hit result: ${{ steps.cache-deps.outputs.cache-hit }}
-
+        run: "echo Cache hit result: ${{ steps.cache-deps.outputs.cache-hit }}"
       - name: Install dependencies
         run: npm install --ignore-scripts --no-audit --no-fund || true
-
       - name: Build project
         run: echo "Dummy build since repo is empty"
